@@ -16,6 +16,11 @@ pipeline {
             command:
             - cat
             tty: true
+          - name: dotnetcore
+            image: mcr.microsoft.com/dotnet/runtime:7.0
+            command:
+            - dotnet
+            tty: true
         '''
     }
   }
