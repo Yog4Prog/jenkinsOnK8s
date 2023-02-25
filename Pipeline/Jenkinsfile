@@ -19,7 +19,7 @@ pipeline {
           - name: dotnetcore
             image: mcr.microsoft.com/dotnet/runtime:7.0
             command:
-            - dotnet
+            - cat
             tty: true
         '''
     }
@@ -29,11 +29,19 @@ pipeline {
       steps {
         container('maven') {
           sh 'mvn -version'
-          sh ' echo Hello World > hello.txt'
+          sh ' echo Enter Into maven Container > hello.txt'
+          sh ' cat hello.txt'
           sh 'ls -last'
         }
         container('node') {
           sh 'npm version'
+          sh ' echo Enter Into node Container >> hello.txt'
+          sh 'cat hello.txt'
+          sh 'ls -last'
+        }
+        container('dotnetcore') {
+          sh 'dotnet'
+          sh ' echo Enter Into dotnetcore Container >> hello.txt'
           sh 'cat hello.txt'
           sh 'ls -last'
         }
