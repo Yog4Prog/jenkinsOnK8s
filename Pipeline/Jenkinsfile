@@ -40,7 +40,7 @@ pipeline {
           sh 'ls -last'
         }
         container('dotnetcore') {
-          sh 'dotnet'
+          sh 'dotnet --info'
           sh ' echo Enter Into dotnetcore Container >> hello.txt'
           sh 'cat hello.txt'
           sh 'ls -last'
