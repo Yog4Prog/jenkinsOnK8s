@@ -56,7 +56,7 @@ pipeline {
         container('cosign') {
           sh 'ls -last'
           sh '/usr/local/bin/cosign login hub.docker.io -u yogendra123raju -p Raju@123'
-          sh '/usr/local/bin/cosign sign --key cosign.key yogendra123raju/cosign:t1'
+          sh '/usr/local/bin/cosign sign --key /usr/local/bin/cosign.key yogendra123raju/cosign:t1'
         }
       }
     }
