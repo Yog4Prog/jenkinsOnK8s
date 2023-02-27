@@ -21,6 +21,11 @@ pipeline {
             command:
             - cat
             tty: true
+          - name: cosign
+            image: yogendra123raju/cosign:t1
+            command:
+            - cat
+            tty: true
         '''
     }
   }
@@ -47,6 +52,11 @@ pipeline {
           sh ' echo Enter Into dotnetcore Container >> hello.txt'
           sh 'cat hello.txt'
           sh 'ls -last'
+        }
+        container('cosign') {
+          sh 'ls -last'
+          sh '/usr/local/bin/cosign login hub.docker.io -u yogendra123raju -p Raju@123'
+          sh '/usr/local/bin/cosign sign --key cosign.key yogendra123raju/cosign:t1'
         }
       }
     }
